@@ -39,7 +39,7 @@ namespace ExamenP3GArguello.ViewModels
         }
 
 
-        public async Task <Country> ObtenerCountry()
+        public async Task ObtenerCountry()
         {
             CountryRepository repo = new CountryRepository("country.db");
             Country country = await repo.RetornaPaisAsync();
