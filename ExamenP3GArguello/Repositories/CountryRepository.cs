@@ -29,16 +29,16 @@ namespace ExamenP3GArguello.Repositories
         {
             _dbPath = dbPath;
         }
-        public async Task<List<Country>> RetornaPais()
+        public async Task <Country> RetornaPais()
         {
             HttpClient client = new HttpClient();
             string url = "https://restcountries.com/v3.1/all";
             var response = client.GetAsync(url);
             string response_json = await response.Result.Content.ReadAsStringAsync();
 
-            List<Country> countries = JsonConvert.DeserializeObject<List<Country>>(response_json);
+            Country country = JsonConvert.DeserializeObject<Country>(response_json);
 
-            return countries;
+            return country;
         }
         public void GuardarCountry(Country country)
         {
@@ -56,7 +56,9 @@ namespace ExamenP3GArguello.Repositories
             return conn.Table<Country>().ToList();
         }
 
-    
-
+        internal async Task<Country> RetornaPaisAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace ExamenP3GArguello.Models
     {
         [Key]
 
-        []
         public int Id { get; set; }
         public Name name {  get; set; }
 

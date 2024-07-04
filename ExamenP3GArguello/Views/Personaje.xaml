@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExamenP3GArguello.Views.Personaje"
+             Title="Personaje">
+    <VerticalStackLayout>
+        <Label
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Image Source="alberteinstein.jpg" />
+        <Label Text="Para mi, Gabriel Arguello, me gusta este personaje porque presentó postulados que desafiaron los preceptos conocidos de la física y revolucionó el campo." />
+
+    </VerticalStackLayout>
+
+
+</ContentPage>

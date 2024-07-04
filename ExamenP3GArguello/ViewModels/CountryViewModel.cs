@@ -39,10 +39,10 @@ namespace ExamenP3GArguello.ViewModels
         }
 
 
-        public async Task ObtenerCountry()
+        public async Task <Country> ObtenerCountry()
         {
             CountryRepository repo = new CountryRepository("country.db");
-            Country country = await repo.RetornaPais();
+            Country country = await repo.RetornaPaisAsync();
             repo.GuardarCountry(country);
             Model.name = country.name;
             OnPropertyChanged(nameof(Model));
