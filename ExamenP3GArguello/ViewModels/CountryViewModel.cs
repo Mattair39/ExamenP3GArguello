@@ -1,11 +1,14 @@
 ﻿using ExamenP3GArguello.Models;
+using ExamenP3GArguello.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace ExamenP3GArguello.ViewModels
 {
@@ -21,7 +24,9 @@ namespace ExamenP3GArguello.ViewModels
                 if (_model != value)
                 {
                     _model = value;
+                    OnPropertyChanged(nameof(Model));
                 }
+                
             }
         }
 
@@ -29,10 +34,28 @@ namespace ExamenP3GArguello.ViewModels
 
         public CountryViewModel()
         {
-            ComandoMostrarPaises = new Command(() => { });
+            Model = new Country();  
+            ComandoMostrarPaises = new Command(async () => await ObtenerCountry ());
+        }
+
+
+        public async Task ObtenerCountry()
+        {
+            CountryRepository repo = new CountryRepository("country.db");
+            Country country = await repo.RetornaPais();
+            repo.GuardarCountry(country);
+            Model.name = country.name;
+            OnPropertyChanged(nameof(Model));
         }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
+
 }
